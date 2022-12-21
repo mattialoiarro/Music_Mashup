@@ -12,7 +12,7 @@ Dafür benutzen wir die 3 Api's.
 
 
 # Programmiersprache und DB
-Für die Programmierung benutzen wir für das Frontend React JS und für das Backend Express JS.
+Für die Programmierung benutzen wir für das Frontend React JS und für das Backend Java Spring.
 Unsere DB ist auf Azure.
 
 # Für Herrn Lanza
