@@ -11,6 +11,7 @@ function App() {
   const [playlistresult, setPlaylistresult] = useState([]);
   const [searchResults, setSearchResults] = useState([]);
   const [playlistURL, setPlaylistURL] = useState("");
+  const [lyrics, setLyrics] = useState("");
 
   const [token, setToken] = useState("");
 
@@ -37,7 +38,9 @@ function App() {
     setToken(token);
   }, []);
 
-
+  function getLyrics() {
+   
+  }
 
   const logout = () => {
     setToken("");
@@ -78,10 +81,30 @@ function App() {
       <Card.Body>
         <Card.Title>{item.track.name}</Card.Title>
         <Card.Text>
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
+          <h4>Artists:</h4>
+          {item.track.artists.map((artist) => (
+            <div>
+              <p> {artist.name} </p>
+            </div>
+          ))}
         </Card.Text>
-        <Button variant="primary">Go somewhere</Button>
+        <Button variant="primary" onClick={()=>{
+           const url =
+           "https://spotify-scraper.p.rapidapi.com/v1/track/lyrics?trackId="+item.track.id;
+     
+         const options = {
+           method: "GET",
+           headers: {
+             "X-RapidAPI-Key": "e451035421msh38c089d44761c42p1b4070jsn3ebb2f8a409c",
+             "X-RapidAPI-Host": "spotify-scraper.p.rapidapi.com",
+           },
+         };
+     
+         fetch(url, options)
+           .then((res) => res.text())
+           .then((res) => setLyrics(res))
+           .catch((err) => console.error("error:" + err));
+        }}>Get Lyrics</Button>
       </Card.Body>
     </Card>
   ));
@@ -114,6 +137,7 @@ function App() {
             {" "}
             <div class="main">
               <p>Search for your favorite playlist and find out more</p>
+              <p style={{float:"right"}}>{lyrics}</p>
 
               <div class="box">
                 <form name="search">
@@ -130,7 +154,6 @@ function App() {
                         redirect: "follow",
                       };
                       if (inputSearch == "") {
-                        
                       } else {
                         fetch(
                           "https://api.spotify.com/v1/search?query=" +
@@ -161,10 +184,16 @@ function App() {
                 <Else>
                   {Array.isArray(searchResults)
                     ? searchResults.map((item) => {
-                        return <p onClick={event => {
-                          setPlaylistURL(item.id);
-                          getPlaylist(item.id);
-                        }}>{item.name}</p>;
+                        return (
+                          <p
+                            onClick={(event) => {
+                              setPlaylistURL(item.id);
+                              getPlaylist(item.id);
+                            }}
+                          >
+                            {item.name}
+                          </p>
+                        );
                       })
                     : null}
                 </Else>
