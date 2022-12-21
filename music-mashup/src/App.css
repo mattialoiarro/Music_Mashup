@@ -13,27 +13,112 @@
   }
 }
 
-.App-header {
-  background-color: #191414;
+.App {
+  background-color: #ffffff;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color:#1DB954;
+  color: #1DB954;
 }
-.Title{
+
+.navbar {
+  background-color: #191414;
+  overflow: hidden;
+  background-color: #191414;
+  position: fixed;
+  /* Set the navbar to fixed position */
+  top: 0;
+  /* Position the navbar at the top of the page */
+  width: 100%;
+  /* Full width */
+}
+
+.logo {
+  padding: 0% !important;
+  border-radius: 50%;
+  width: 8%;
+  height: 8%;
+}
+
+.navbar a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.navbar a:hover {
+  background: #ddd;
+  color: #1DB954;
+}
+
+.Title {
   display: inline;
 }
+
 .App-link {
   color: #61dafb;
+}
+.box{
+  position: relative;
+}
+
+.input {
+  padding: 10px;
+  width: 80px;
+  height: 80px;
+  background: none;
+  border: 4px solid #1DB954;
+  border-radius: 50px;
+  box-sizing: border-box;
+  font-family: Comic Sans MS;
+  font-size: 26px;
+  color: #1DB954;
+  outline: none;
+  transition: .5s;
+  padding-left:30px;
+}
+.box:hover input{
+  width: 350px;
+  background: #191414;
+  border-radius: 10px;
+  
+}
+.songCard{
+  float: left;
+  
+}
+.box i{
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  transform: translate(-50%,-50%);
+  font-size: 26px;
+  color: #ffd52d;
+  transition: .2s;
+}
+.box:hover i{
+  opacity: 0;
+  z-index: -1;
+}
+
+/* YouTube icon */
+
+.searchButton{
+  width: 100%;
+  height: 100%;
 }
 
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
