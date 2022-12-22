@@ -75,7 +75,8 @@ function App() {
   const listItems = playlistresult.map((item) => (
     <Card
       class="songCard"
-      style={{ width: "18rem", border: "3px solid #191414", padding: ".5rem" }}
+      style={{ width: "18rem", border: "3px solid #191414", padding: ".5rem", backgroundColor: "#191414",filter: "drop-shadow(-5px 3.8px 3.8px #000)"
+    }}
     >
       <Card.Img
         variant="top"
@@ -93,7 +94,18 @@ function App() {
             </div>
           ))}
         </Card.Text>
-        <Button variant="primary" onClick={() => {
+        <Button class="getLyrics" style={{
+          border: " 2px solid #1DB954",
+          backgroundColor: "white",
+          borderRadius: "20px",
+          paddingLeft: "2em",
+          paddingRight: "2em",
+          paddingTop: "0.3em",
+          paddingBottom: "0.3em",
+          fontSize: "1em",
+          color: "#1DB954",
+          filter: "drop-shadow(-1px 1.7px 1.7px white)"
+        }} onClick={() => {
           const url =
             "https://spotify-scraper.p.rapidapi.com/v1/track/lyrics?trackId=" + item.track.id;
 
@@ -138,8 +150,9 @@ function App() {
           rel="stylesheet"
         />
       </div>
-      <header className="App-header">
-        <h1>Spotify React</h1>
+
+      <body className="body">
+        <h1 class="Title">Spotify React</h1>
         {!token ? (
           <a
             href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}
@@ -225,7 +238,7 @@ function App() {
             <button onClick={logout}>Logout</button>
           </div>
         )}
-      </header>
+      </body>
     </div>
   );
 }
