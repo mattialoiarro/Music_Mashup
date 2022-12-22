@@ -1,8 +1,8 @@
 # Music_Mashup
-Mashup with Spotify APIs for playlists, song meanings and concert dates
+Mashup with Spotify APIs for playlists, song meanings and billboard top 10
 
 
-Wir benutzen 3 Api's um Songs von Spotify zu suchen, die dementsprechenden Lycris und (ihre nächsten Konzerte).
+Wir benutzen 3 Api's um Songs von Spotify zu suchen, die dementsprechenden Lycris und (die top 10 Charts anzuzeigen).
 
 # API
 Dafür benutzen wir die 3 Api's.
