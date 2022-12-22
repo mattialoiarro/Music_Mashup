@@ -12,6 +12,7 @@ function App() {
   const [searchResults, setSearchResults] = useState([]);
   const [playlistURL, setPlaylistURL] = useState("");
   const [lyrics, setLyrics] = useState("");
+  const [split, setSplit] = useState();
 
   const [token, setToken] = useState("");
 
@@ -34,13 +35,13 @@ function App() {
       window.location.hash = "";
       window.localStorage.setItem("token", token);
     }
-
     setToken(token);
   }, []);
 
-  function getLyrics() {
-   
-  }
+  useEffect(() => {
+    formatLyrics()
+  }, [lyrics]);
+
 
   const logout = () => {
     setToken("");
@@ -65,12 +66,16 @@ function App() {
       .catch((error) => console.log("error", error));
   }
 
-  function searchPlaylist() {}
+  function formatLyrics() {
+    let arr = [];
+    arr = lyrics.split("\n");
+    setSplit(arr);
+  }
 
   const listItems = playlistresult.map((item) => (
     <Card
       class="songCard"
-      style={{ width: "18rem", border: "3px solid #191414" }}
+      style={{ width: "18rem", border: "3px solid #191414", padding: ".5rem" }}
     >
       <Card.Img
         variant="top"
@@ -88,26 +93,35 @@ function App() {
             </div>
           ))}
         </Card.Text>
-        <Button variant="primary" onClick={()=>{
-           const url =
-           "https://spotify-scraper.p.rapidapi.com/v1/track/lyrics?trackId="+item.track.id;
-     
-         const options = {
-           method: "GET",
-           headers: {
-             "X-RapidAPI-Key": "e451035421msh38c089d44761c42p1b4070jsn3ebb2f8a409c",
-             "X-RapidAPI-Host": "spotify-scraper.p.rapidapi.com",
-           },
-         };
-     
-         fetch(url, options)
-           .then((res) => res.text())
-           .then((res) => setLyrics(res))
-           .catch((err) => console.error("error:" + err));
+        <Button variant="primary" onClick={() => {
+          const url =
+            "https://spotify-scraper.p.rapidapi.com/v1/track/lyrics?trackId=" + item.track.id;
+
+          const options = {
+            method: "GET",
+            headers: {
+              "X-RapidAPI-Key": "e451035421msh38c089d44761c42p1b4070jsn3ebb2f8a409c",
+              "X-RapidAPI-Host": "spotify-scraper.p.rapidapi.com",
+            },
+          };
+
+          fetch(url, options)
+            .then((res) => res.text())
+            .then((res) => setLyrics(res))
+            .catch((err) => console.error("error:" + err));
+
+
+
+
         }}>Get Lyrics</Button>
       </Card.Body>
     </Card>
   ));
+
+
+
+
+
 
   return (
     <div className="App">
@@ -137,7 +151,15 @@ function App() {
             {" "}
             <div class="main">
               <p>Search for your favorite playlist and find out more</p>
-              <p style={{float:"right"}}>{lyrics}</p>
+              {Array.isArray(split)
+                ? split.map((item) => {
+                  return (
+                    <p>
+                      <div>{item}</div>
+                    </p>
+                  );
+                })
+                : null}
 
               <div class="box">
                 <form name="search">
@@ -157,8 +179,8 @@ function App() {
                       } else {
                         fetch(
                           "https://api.spotify.com/v1/search?query=" +
-                            inputSearch +
-                            "&type=playlist&limit=3&offset=0",
+                          inputSearch +
+                          "&type=playlist&limit=3&offset=0",
                           requestOptions
                         )
                           .then((response) => response.json())
@@ -173,17 +195,12 @@ function App() {
                     name="txt"
                     onmouseout="this.value = ''; this.blur();"
                   ></input>
-                </form>
-                {listItems}
-                <button onClick={getPlaylist}></button>
-              </div>
-              <div class="card mx-auto" style={{ width: "18rem;" }}>
-                <If condition={searchResults === []}>
-                  <Then></Then>
-                </If>
-                <Else>
-                  {Array.isArray(searchResults)
-                    ? searchResults.map((item) => {
+                  <If condition={searchResults === []}>
+                    <Then></Then>
+                  </If>
+                  <Else>
+                    {Array.isArray(searchResults)
+                      ? searchResults.map((item) => {
                         return (
                           <p
                             onClick={(event) => {
@@ -195,8 +212,14 @@ function App() {
                           </p>
                         );
                       })
-                    : null}
-                </Else>
+                      : null}
+                  </Else>
+                </form>
+                <div class="cards">
+                  {listItems}</div>
+              </div>
+              <div class="card mx-auto" style={{ width: "18rem;" }}>
+
               </div>
             </div>{" "}
             <button onClick={logout}>Logout</button>

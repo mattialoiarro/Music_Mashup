@@ -64,7 +64,8 @@
 .App-link {
   color: #61dafb;
 }
-.box{
+
+.box {
   position: relative;
 }
 
@@ -81,35 +82,47 @@
   color: #1DB954;
   outline: none;
   transition: .5s;
-  padding-left:30px;
+  padding-left: 30px;
 }
-.box:hover input{
+
+.box:hover input {
   width: 350px;
   background: #191414;
   border-radius: 10px;
-  
+
 }
-.songCard{
-  float: left;
-  
+
+
+
+.cards {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  grid-auto-rows: auto;
+
+  grid-gap: 1rem;
 }
-.box i{
+
+
+.box i {
   position: absolute;
   top: 50%;
   right: 15px;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%, -50%);
   font-size: 26px;
   color: #ffd52d;
   transition: .2s;
 }
-.box:hover i{
+
+.box:hover i {
   opacity: 0;
   z-index: -1;
 }
 
 /* YouTube icon */
 
-.searchButton{
+.searchButton {
   width: 100%;
   height: 100%;
 }
