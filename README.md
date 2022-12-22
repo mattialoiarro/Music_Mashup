@@ -8,7 +8,7 @@ Wir benutzen 3 Api's um Songs von Spotify zu suchen, die dementsprechenden Lycri
 Dafür benutzen wir die 3 Api's.
 - https://rapidapi.com/Glavier/api/spotify23/
 - https://rapidapi.com/Glavier/api/genius-song-lyrics1/
-- (https://rapidapi.com/s.mahmoud97/api/concerts-artists-events-tracker/)
+- (https://rapidapi.com/LDVIN/api/billboard-api/) In progress 
 
 
 # Programmiersprache und DB
