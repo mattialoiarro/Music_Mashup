@@ -1,7 +1,8 @@
 package ch.bbw.backend.controller;
 
+import ch.bbw.backend.model.Song;
 import ch.bbw.backend.model.User;
-import ch.bbw.backend.service.DatabaseService;
+import ch.bbw.backend.service.SongService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -16,33 +17,33 @@ import java.util.List;
 @Controller
 public class UserController {
 
-    private DatabaseService databaseService;
+    private SongService songService;
 
     @Autowired
-    public UserController(DatabaseService databaseService) {
-        this.databaseService = databaseService;
+    public UserController(SongService songService) {
+        this.songService = songService;
     }
 
     @GetMapping("/")
     public String homepage(Model model, HttpServletRequest request) {
-        model.addAttribute("userlist", databaseService.getUsers());
+        model.addAttribute("userlist", songService.getSongs());
         return "index";
     }
 
     @GetMapping("/users")
-    public ResponseEntity<List<User>> getUsers() {
+    public ResponseEntity<List<Song>> getUsers() {
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .contentType(MediaType.APPLICATION_JSON)
-                .body(databaseService.getUsers());
+                .body(songService.getSongs());
     }
 
     @GetMapping("/users/{id}")
-    public ResponseEntity<User> getJoke(@PathVariable int id) {
+    public ResponseEntity<Song> getJoke(@PathVariable int id) {
         return ResponseEntity
                 .status(HttpStatus.OK) // HTTP 200
                 .contentType(MediaType.APPLICATION_JSON)
-                .body(databaseService.getUserByID(id));
+                .body(songService.getSongByID(id));
 
     }
 
@@ -73,7 +74,7 @@ public class UserController {
     @DeleteMapping("/users/{id}")
     public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
         // delete the user with the specified ID
-        boolean deleted = databaseService.deleteUser(id);
+        boolean deleted = songService.deleteSong(id);
         if (deleted) {
             return ResponseEntity.noContent().build(); // HTTP 204
         } else {

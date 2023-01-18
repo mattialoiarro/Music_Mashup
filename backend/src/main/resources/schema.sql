@@ -1,8 +1,9 @@
--- Create table "user"
-CREATE TABLE user
+DROP TABLE if EXISTS song;
+
+CREATE TABLE song
 (
-    id       INT PRIMARY KEY AUTO_INCREMENT,
-    email    VARCHAR(255) NOT NULL,
-    password VARCHAR(255) NOT NULL,
-    key      TEXT         NOT NULL
+    id             int IDENTITY(1,1) PRIMARY KEY,
+    spotifyTrackID INT,
+    title          VARCHAR(255),
+    artist         VARCHAR(255)
 );
