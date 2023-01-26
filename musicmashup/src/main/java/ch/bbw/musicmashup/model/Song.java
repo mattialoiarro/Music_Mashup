@@ -17,7 +17,7 @@ public class Song {
     private String artist;
 
     @Column(name = "spotify_trackid")
-    private Long spotifyTrackID;
+    private String spotifyTrackID;
 
 
     public Long getId() {
@@ -40,15 +40,16 @@ public class Song {
         return artist;
     }
 
+    public String getSpotifyTrackID() {
+        return spotifyTrackID;
+    }
+
+    public void setSpotifyTrackID(String spotifyTrackID) {
+        this.spotifyTrackID = spotifyTrackID;
+    }
+
     public void setArtist(String artist) {
         this.artist = artist;
     }
 
-    public Long getSpotifyTrackID() {
-        return spotifyTrackID;
-    }
-
-    public void setSpotifyTrackID(Long spotifyTrackID) {
-        this.spotifyTrackID = spotifyTrackID;
-    }
 }

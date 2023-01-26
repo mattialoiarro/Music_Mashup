@@ -5,9 +5,10 @@ import ch.bbw.musicmashup.service.SongService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import java.util.List;
-
+@CrossOrigin("http://localhost:3000/")
 @RestController
 @RequestMapping("/songs")
 public class SongController {
@@ -16,7 +17,7 @@ public class SongController {
     private SongService songService;
 
 
-
+    @CrossOrigin("http://localhost:3000/")
     @GetMapping("/{id}")
     public ResponseEntity<Song> getSongById(@PathVariable(value = "id") Long id) {
         Song song = songService.getSongById(id);
@@ -25,7 +26,7 @@ public class SongController {
         }
         return ResponseEntity.ok().body(song);
     }
-
+    @CrossOrigin("http://localhost:3000/")
     @PostMapping
     public Song addSong(@RequestBody Song song) {
         return songService.addSong(song);
