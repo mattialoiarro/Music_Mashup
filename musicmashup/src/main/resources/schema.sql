@@ -1,3 +1,3 @@
-INSERT INTO Song (title, artist, album, spotifyTrackID) VALUES ('song1', 'artist1', 'album1', 1);
-INSERT INTO Song (title, artist, album, spotifyTrackID) VALUES ('song2', 'artist2', 'album2', 2);
-INSERT INTO Song (title, artist, album, spotifyTrackID) VALUES ('song3', 'artist3', 'album3', 3);
+INSERT INTO song (spotify_trackid, title, artist) VALUES (1, 'song1', 'artist1');
+INSERT INTO song (spotify_trackid, title, artist) VALUES (2, 'song2', 'artist2');
+INSERT INTO song (spotify_trackid, title, artist) VALUES (3, 'song3', 'artist3');

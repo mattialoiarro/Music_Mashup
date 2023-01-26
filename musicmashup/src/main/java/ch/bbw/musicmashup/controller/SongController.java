@@ -15,10 +15,7 @@ public class SongController {
     @Autowired
     private SongService songService;
 
-    @GetMapping
-    public List<Song> getAllSongs() {
-        return songService.getAllSongs();
-    }
+
 
     @GetMapping("/{id}")
     public ResponseEntity<Song> getSongById(@PathVariable(value = "id") Long id) {

@@ -3,7 +3,7 @@ package ch.bbw.musicmashup.model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "songs")
+@Table(name = "song")
 public class Song {
 
     @Id
@@ -16,11 +16,8 @@ public class Song {
     @Column(name = "artist")
     private String artist;
 
-    @Column(name = "spotifyTrackID")
+    @Column(name = "spotify_trackid")
     private Long spotifyTrackID;
-
-    @Column(name = "album")
-    private String album;
 
 
     public Long getId() {
@@ -53,13 +50,5 @@ public class Song {
 
     public void setSpotifyTrackID(Long spotifyTrackID) {
         this.spotifyTrackID = spotifyTrackID;
-    }
-
-    public String getAlbum() {
-        return album;
-    }
-
-    public void setAlbum(String album) {
-        this.album = album;
     }
 }
